@@ -15,8 +15,8 @@ def main():
         parser.add_argument("-fin", "--finDetailsdatasetpath", required=True)
         parser.add_argument("-c", "--country", action="append", required=True)
         args = parser.parse_args()
-        #file_validation(filePath=args.clientsdatasetpath)
-        #file_validation(filePath=args.finDetailsdatasetpath)
+        file_validation(filePath=args.clientsdatasetpath)
+        file_validation(filePath=args.finDetailsdatasetpath)
 
         with open_spark_session(spark_remote_url=args.sparkremoteurl) as spark:
             dfm = DataFrameManipulation()
