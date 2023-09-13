@@ -4,3 +4,4 @@ dist
 userstory8020.egg-info
 **/__pycache__
 **/scripts.py
+client_data/*
