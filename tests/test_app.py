@@ -9,7 +9,6 @@ from userstory8020.app import DataFrameManipulation
 
 @pytest.fixture
 def df_manipulation(spark):
-    print("dsfsdf")
     test_filename_client = 'source_data/dataset_one.csv'
     test_filename_findetails = 'source_data/dataset_two.csv'
     dfm = DataFrameManipulation()
