@@ -26,19 +26,22 @@ def main():
             dfm.finDetails = spark.read.csv(args.finDetailsdatasetpath,
                                             sep=',',
                                             header=True)
-            dfm.clients.show()
-            dfm.finDetails.show()
+#            dfm.clients.show()
+#            dfm.finDetails.show()
             dfm.filter_rows(filterConditions={"country": args.country})
             dfm.select_columns(colsList=['email', 'country'],
                                colsMap={"btc_a": "bitcoin_address",
                                         "id": "client_identifier",
                                         "cc_t": "credit_card_type"})
             dfm.clients.show()
-            dfm.save_output(outputPath="client_data")
+            dfm.save_output(outputPath="/usr/src/userStory8020/client_data/output")
     except AppException as e:
         main_logger.error(e)
-    except Exception:
+    except Exception as e:
+        main_logger.error(e)
         main_logger.info("Programm completed with an ERROR!")
+    else:
+        main_logger.info("Programm completed SUCCESSFULLY!")
 
 
 if __name__ == "__main__":
