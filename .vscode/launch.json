@@ -12,14 +12,8 @@
             "args": [
                 "-sp",
                 "sc://localhost:15002",
-                "-cli",
-                "/usr/src/userStory8020/source_data/dataset_one.csv",
-                "-fin",
-                "/usr/src/userStory8020/source_data/dataset_two.csv",
-                "-c",
-                "United Kingdom",
-                "-c",
-                "Netherlands"
+                "-prc",
+                "userstory8020\\process.json"
             ],
             "justMyCode": true
         }

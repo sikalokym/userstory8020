@@ -8,3 +8,8 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 USER root
+
+
+#FROM apache/spark:latest
+#RUN /bin/sh -c apt-get update && apt install -y python3.7
+#USER root

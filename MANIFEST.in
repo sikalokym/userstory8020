@@ -1,1 +1,2 @@
 include userstory8020/logging_conf.yml
+include userstory8020/process.json

@@ -1,0 +1,70 @@
+{
+    "version": "1.0",
+    "startstream": "readclients",
+    "extracts": [
+        {
+            "stream": "readclients",
+            "dataframe": "clients",
+            "callable": "userstory8020.app.DataFrameManipulation",
+            "params": {
+                "path": "/usr/src/userStory8020/source_data/dataset_one.csv"
+            },
+            "downstream": "filterclients"
+        },
+        {
+            "stream": "readfindetails",
+            "dataframe": "finDetails",
+            "callable": "userstory8020.app.DataFrameManipulation",
+            "params": {
+                "path": "/usr/src/userStory8020/source_data/dataset_two.csv"
+            },
+            "downstream": "joinfindetails"
+        }
+    ],
+    "transforms": [
+        {
+            "stream": "filterclients",
+            "dataframe": "clients",
+            "callable": "filter_rows",
+            "params": {
+                "filterConditions": {"country": ["United Kingdom",
+                                                 "Netherlands"]}
+            },
+            "downstream": "readfindetails"
+        },
+        {
+            "stream": "selectcolumns",
+            "dataframe": "clients",
+            "callable": "select_columns",
+            "params": {
+                "colsList": ["email", "country"],
+                "colsMap": {"btc_a": "bitcoin_address",
+                            "id": "client_identifier",
+                            "cc_t": "credit_card_type"}
+            },
+            "downstream": "writeclients"
+        }
+    ],
+    "joins": [
+        {
+            "stream": "joinfindetails",
+            "source": "clients",
+            "target": "finDetails",
+            "callable": "join_dataframe",
+            "params": {
+                "on": ["id"]
+            },
+            "downstream": "selectcolumns"
+        }
+    ],
+    "loads": [
+        {
+            "stream": "writeclients",
+            "dataframe": "clients",
+            "callable": "save_output",
+            "params": {
+                "outputPath": "/usr/src/userStory8020/client_data/output"
+            }
+        }
+    ]
+}
